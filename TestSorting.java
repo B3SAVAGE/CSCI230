@@ -1,6 +1,7 @@
+import java.util.Hashtable;
 import java.util.Random;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         //random numbers
@@ -17,13 +18,31 @@ public class Main {
         System.out.println("");
 
         //call a sorting algorithm you made
-        System.out.println("-- SelectionSort --");
-        SelectionSort.sort(numbers);
+        System.out.println("-- QuickSort --");
+        InsertionSort.sort(numbers);
 
         //output sorted
         System.out.print("Sorted:   ");
         for (int i = 0; i < numbers.length; ++i) {
             System.out.print(numbers[i] + " ");
         }
+    }
+
+    public static class Solution {
+        public int[] twoSum(int[] numbers, int target) {
+
+            int[] result = new int[2];
+            Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
+
+            for(int i = 0; i < numbers.length; i++){
+                if(table.containsKey(numbers[i])){
+                    result[0] = table.get(numbers[i]) + 1;
+                    result[1] = i + 1;
+                }
+                table.put(target - numbers[i], i);
+            }
+            return result;
+        }
+
     }
 }
